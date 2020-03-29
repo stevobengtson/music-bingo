@@ -1,13 +1,1 @@
-<div class="jumbotron jumbotron-fluid">
-    <div class="text-center">
-        <h1 class="display-4">Music Bingo</h1>
-        <p class="lead">Create or Join a Music Bingo room.</p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs mx-auto">
-        <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="/rooms/create">Create Room</button>
-        <button type="button" class="btn btn-success btn-lg btn-block">Join Room</button>
-    </div>
-</div>
+<p *ngIf="room">Welcome to room {{room.key}}</p>

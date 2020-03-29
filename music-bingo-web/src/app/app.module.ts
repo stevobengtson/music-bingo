@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +19,7 @@ import { RoomsModule } from './rooms/rooms.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgBootstrapFormValidationModule.forRoot(),

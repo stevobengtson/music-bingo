@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Room } from './room';
 import { Observable } from 'rxjs';
 
@@ -6,20 +8,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoomService {
-  private nextId = 1;
-  rooms: Room[] = [];
-
-  constructor() { }
+  private readonly baseUrl: string = 'http://localhost:3000/rooms';
+  constructor(private readonly http: HttpClient) { }
 
   createRoom(name: string): Observable<Room> {
-    return new Observable((observer) => {
-      let newRoom: Room = this.rooms.find((room: Room) => room.name == name);
-      if (!newRoom) {
-        newRoom = new Room(this.nextId++, name)
-        this.rooms.push(newRoom);
-      }
-  
-      observer.next(newRoom);
-    });
+    return this.http.post<Room>(this.baseUrl, { name: name });
+  }
+
+  getMany(): Observable<Room[]> {
+    return this.http.get<Room[]>(`${this.baseUrl}?start=0&limit=10`);
+  }
+
+  get(key: string): Observable<Room> {
+    return this.http.get<Room>(`${this.baseUrl}/${key}`);
   }
 }
