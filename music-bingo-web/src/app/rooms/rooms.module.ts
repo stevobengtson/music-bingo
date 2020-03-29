@@ -10,6 +10,7 @@ import { RoomComponent } from './room/room.component';
 import { CreateComponent } from './create/create.component';
 import { RoomsComponent } from './rooms.component';
 import { ListComponent } from './list/list.component';
+import { PlayersModule } from '../players/players.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListComponent } from './list/list.component';
     CommonModule,
     FormsModule,
     NgBootstrapFormValidationModule,
-    RoomsRoutingModule
+    RoomsRoutingModule,
+    PlayersModule
   ]
 })
 export class RoomsModule { }

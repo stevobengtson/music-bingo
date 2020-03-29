@@ -1,0 +1,17 @@
+<h1>Create Players for Music Bingo Room</h1>
+<form [formGroup]="playerForm">
+  <div formArrayName="playerNames">
+    <div class="form-group" *ngFor="let playerName of playerNames.controls; let i=index">
+      <label>Player {{i + 1}}:</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [formControlName]="i">
+        <div *ngIf="i > 0" class="input-group-append">
+          <button class="btn btn-outline-danger" type="button" (click)="removePlayer(i)">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="playerNames.length < 4" class="btn btn-success" (click)="addPlayer()">+</button>
+
+  <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+</form>
