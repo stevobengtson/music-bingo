@@ -1,34 +1,35 @@
 import { Controller, Post, Body, Get, Query, Param, Put, Delete } from '@nestjs/common';
 import { Room } from './room.entity';
-import { RoomService } from './room.service';
+import { RoomsService } from './rooms.service';
 import { FindPagedCriteria } from 'src/general/find-paged-criteria';
+import { UpdateResult } from 'typeorm';
 
 @Controller('rooms')
 export class RoomsController {
-  constructor(private readonly roomService: RoomService) {}
+  constructor(private readonly roomsService: RoomsService) {}
 
   @Post()
   create(@Body() room: Room): Promise<Room> {
-    return this.roomService.createRoom(room);
+    return this.roomsService.createRoom(room);
   }
 
   @Get()
   findAll(@Query() query: FindPagedCriteria): Promise<Room[]> {
-    return this.roomService.findRooms(query);
+    return this.roomsService.findRooms(query);
   }
 
   @Get(':key')
   findOne(@Param('key') key: string): Promise<Room> {
-    return this.roomService.findRoom(key);
+    return this.roomsService.findRoom(key);
   }
 
   @Put(':key')
   update(@Param('key') key: string, @Body() updateRoom: Room): Promise<Room> {
-    return this.roomService.updateRoom(key, updateRoom);
+    return this.roomsService.updateRoom(key, updateRoom);
   }
 
   @Delete(':key')
-  remove(@Param('key') key: string): Promise<any> {
-    return this.roomService.removeRoom(key);
+  remove(@Param('key') key: string): Promise<UpdateResult> {
+    return this.roomsService.removeRoom(key);
   }
 }

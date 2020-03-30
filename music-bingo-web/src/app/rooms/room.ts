@@ -1,5 +1,8 @@
+import { Player } from '../players/player';
+
 export class Room {
-    id: number;
+    id?: number;
     name: string;
     key: string;
+    players: Player[];
 }

@@ -12,7 +12,7 @@ export class RoomService {
   constructor(private readonly http: HttpClient) { }
 
   createRoom(name: string): Observable<Room> {
-    return this.http.post<Room>(this.baseUrl, { name: name });
+    return this.http.post<Room>(this.baseUrl, { name });
   }
 
   getMany(): Observable<Room[]> {

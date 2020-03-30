@@ -5,7 +5,7 @@ import { Room } from './room.entity';
 import { FindPagedCriteria } from 'src/general/find-paged-criteria';
 
 @Injectable()
-export class RoomService {
+export class RoomsService {
   constructor(
     @InjectRepository(Room)
     private roomsRepository: Repository<Room>

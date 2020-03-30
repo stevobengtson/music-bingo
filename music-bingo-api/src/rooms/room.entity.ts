@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, ManyToMany, JoinTable } from 'typeorm';
+import { Player } from 'src/players/player.entity';
 
 @Entity()
 export class Room {
@@ -13,6 +14,10 @@ export class Room {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @ManyToMany(type => Player)
+  @JoinTable()
+  players: Player[];
 
   @BeforeInsert()
   generateKey() {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { PlayerService } from '../player.service';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-player-create',
@@ -10,7 +12,10 @@ export class PlayerCreateComponent implements OnInit {
   playerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly playerService: PlayerService
+  ) { }
 
   ngOnInit(): void {
     this.playerForm = this.formBuilder.group({
@@ -36,8 +41,11 @@ export class PlayerCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.playerForm);
-    alert('You want to submit?');
-    this.submitted = true;
+    this.playerService
+        .createPlayer(this.playerNames.controls[0].value)
+        .subscribe((player: Player) => {
+          console.log('Player created: ', player.name);
+          this.submitted = true;
+        });
   }
 }
