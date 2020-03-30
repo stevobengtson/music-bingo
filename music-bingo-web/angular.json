@@ -127,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "music-bingo-web"
+    }
+  },
+  "defaultProject": "music-bingo-web",
+  "cli": {
+    "analytics": "02e53070-2b3b-4786-a6d1-3fe84d838108"
+  }
 }

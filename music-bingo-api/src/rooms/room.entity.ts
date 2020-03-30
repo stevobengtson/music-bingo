@@ -15,7 +15,9 @@ export class Room {
   @Column({ default: true })
   isActive: boolean;
 
-  @ManyToMany(type => Player)
+  @ManyToMany(type => Player, player => player.rooms, {
+    cascade: true
+  })
   @JoinTable()
   players: Player[];
 

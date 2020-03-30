@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult, InsertResult } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Room } from './room.entity';
 import { FindPagedCriteria } from 'src/general/find-paged-criteria';
+import { Player } from 'src/players/player.entity';
 
 @Injectable()
 export class RoomsService {
@@ -24,14 +25,12 @@ export class RoomsService {
     return this.roomsRepository.findOneOrFail({ key });
   }
 
-  updateRoom(key: string, updateRoom: Room): Promise<Room> {
-    return this.roomsRepository.findOneOrFail({ key }).then((existingRoom: Room) => {
-      const updatedRoom = this.roomsRepository.merge(existingRoom, updateRoom);
-      return this.roomsRepository.save(updatedRoom);
-    });
-  }
-
-  removeRoom(key: string): Promise<UpdateResult> {
-    return this.roomsRepository.softDelete(key);
+  async addPlayersToRoom(key: string, players: Player[]): Promise<Room> {
+    const room = await this.roomsRepository.findOneOrFail({ key });
+    if (!room.players) {
+      room.players = [];
+    }
+    room.players = [...room.players, ...players];
+    return this.roomsRepository.save(room);
   }
 }

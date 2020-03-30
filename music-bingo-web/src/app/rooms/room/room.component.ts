@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { RoomService } from '../room.service';
 import { Room } from '../room';
+import { Player } from 'src/app/players/player';
 
 @Component({
   selector: 'app-room',
@@ -11,6 +12,7 @@ import { Room } from '../room';
 })
 export class RoomComponent implements OnInit {
   room: Room;
+  players: Player[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,5 +29,9 @@ export class RoomComponent implements OnInit {
     this.roomService.get(key).subscribe((room: Room) => {
       this.room = room;
     });
+  }
+
+  updatePlayers(players: Player[]) {
+    this.players = players;
   }
 }

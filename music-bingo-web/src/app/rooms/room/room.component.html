@@ -1,2 +1,8 @@
 <p *ngIf="room">Welcome to room {{room.name}}</p>
-<app-player-create></app-player-create>
+<div *ngIf="room && players.length == 0; else show_cards">
+  <app-player-create [roomKey]="room.key" (playersAddedEvent)="updatePlayers($event)"></app-player-create>
+</div>
+<ng-template #show_cards>
+  <pre>{{room|json}}</pre>
+  <pre>{{players|json}}</pre>
+</ng-template>

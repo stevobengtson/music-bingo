@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { PlayerService } from '../player.service';
 import { Player } from '../player';
 
@@ -9,6 +9,9 @@ import { Player } from '../player';
   styleUrls: ['./create.component.sass']
 })
 export class PlayerCreateComponent implements OnInit {
+  @Input() roomKey: string;
+  @Output() playersAddedEvent = new EventEmitter<Player[]>();
+
   playerForm: FormGroup;
   submitted = false;
 
@@ -21,7 +24,6 @@ export class PlayerCreateComponent implements OnInit {
     this.playerForm = this.formBuilder.group({
       playerNames: this.formBuilder.array([this.formBuilder.control('')])
     });
-    this.playerNames.length
   }
 
   get playerNames(): FormArray {
@@ -41,11 +43,12 @@ export class PlayerCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    const playerNames: string[] = this.playerNames.controls.map((control: AbstractControl) => control.value);
+
     this.playerService
-        .createPlayer(this.playerNames.controls[0].value)
-        .subscribe((player: Player) => {
-          console.log('Player created: ', player.name);
-          this.submitted = true;
+        .createPlayers(this.roomKey, playerNames)
+        .subscribe((players: Player[]) => {
+          this.playersAddedEvent.emit(players);
         });
   }
 }

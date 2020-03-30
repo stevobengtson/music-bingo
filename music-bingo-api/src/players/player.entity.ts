@@ -9,6 +9,6 @@ export class Player {
   @Column()
   name: string;
 
-  @ManyToMany(type => Room)
+  @ManyToMany(type => Room, room => room.players)
   rooms: Room[];
 }

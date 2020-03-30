@@ -11,7 +11,10 @@ export class PlayerService {
 
   constructor(private readonly http: HttpClient) { }
 
-  createPlayer(name: string): Observable<Player> {
-    return this.http.post<Player>(this.baseUrl, { name })
+  createPlayers(roomKey: string, playerNames: string[]): Observable<Player[]> {
+    return this.http.post<Player[]>(this.baseUrl, {
+      roomKey,
+      playerNames
+    });
   }
 }

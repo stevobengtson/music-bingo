@@ -22,14 +22,4 @@ export class RoomsController {
   findOne(@Param('key') key: string): Promise<Room> {
     return this.roomsService.findRoom(key);
   }
-
-  @Put(':key')
-  update(@Param('key') key: string, @Body() updateRoom: Room): Promise<Room> {
-    return this.roomsService.updateRoom(key, updateRoom);
-  }
-
-  @Delete(':key')
-  remove(@Param('key') key: string): Promise<UpdateResult> {
-    return this.roomsService.removeRoom(key);
-  }
 }
