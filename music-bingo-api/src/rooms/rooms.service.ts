@@ -18,15 +18,15 @@ export class RoomsService {
   }
 
   findRooms(query: FindPagedCriteria): Promise<Room[]> {
-    return this.roomsRepository.find({ where: { isActive: true }, take: query.limit, skip: query.start });
+    return this.roomsRepository.find({ where: { isActive: true }, take: query.limit, skip: query.start, relations: ['players'] });
   }
 
   findRoom(key: string): Promise<Room> {
-    return this.roomsRepository.findOneOrFail({ key });
+    return this.roomsRepository.findOneOrFail({ key }, { relations: ['players'] });
   }
 
   async addPlayersToRoom(key: string, players: Player[]): Promise<Room> {
-    const room = await this.roomsRepository.findOneOrFail({ key });
+    const room = await this.roomsRepository.findOneOrFail({ key }, { relations: ['players'] });
     if (!room.players) {
       room.players = [];
     }

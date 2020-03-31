@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlayersModule } from './players/players.module';
 import { RoomsModule } from './rooms/rooms.module';
+import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RoomsModule } from './rooms/rooms.module';
     PlayersModule,
     RoomsModule
   ],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

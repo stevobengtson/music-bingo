@@ -6,7 +6,7 @@ import { Player } from '../player';
 @Component({
   selector: 'app-player-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.sass']
+  styleUrls: ['./create.component.scss']
 })
 export class PlayerCreateComponent implements OnInit {
   @Input() roomKey: string;

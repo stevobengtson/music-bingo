@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RoomService } from '../room.service';
 import { Room } from '../room';
 import { Player } from 'src/app/players/player';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.sass']
+  styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
   room: Room;
@@ -16,7 +16,7 @@ export class RoomComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private readonly roomService: RoomService
+    private readonly gameService: GameService
   ) { }
 
   ngOnInit() {
@@ -26,12 +26,15 @@ export class RoomComponent implements OnInit {
   }
 
   getRoom(key: string) {
-    this.roomService.get(key).subscribe((room: Room) => {
+    this.gameService.loadRoom(key).subscribe((room: Room) => {
+      console.log(room);
       this.room = room;
+      this.players = room.players;
+      this.updatePlayers(this.players);
     });
   }
 
   updatePlayers(players: Player[]) {
-    this.players = players;
+    this.gameService.players = players;
   }
 }

@@ -1,0 +1,13 @@
+.room-content {
+  height: 100%;
+}
+.header {
+  height: 120px;
+}
+.content {
+  overflow-y: auto;
+  height: calc(100% - 160px);
+}
+.footer {
+  height: 40px;
+}

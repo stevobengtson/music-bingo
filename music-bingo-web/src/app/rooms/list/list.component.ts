@@ -5,7 +5,7 @@ import { Room } from '../room';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.sass']
+  styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
   currentRooms: Room[] = [];

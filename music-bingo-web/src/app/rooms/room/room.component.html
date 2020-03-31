@@ -1,4 +1,4 @@
-<div *ngIf="room && players.length == 0; else show_room">
+<div *ngIf="room && players && players.length == 0; else show_room">
   <div class="jumbotron jumbotron-fluid">
     <div class="text-center">
         <h1 class="display-4">Music Bingo Room {{room.name}}</h1>
@@ -8,21 +8,20 @@
   <app-player-create [roomKey]="room.key" (playersAddedEvent)="updatePlayers($event)"></app-player-create>
 </div>
 <ng-template #show_room>
-  <div class="row">
-    <div class="col-12">
+  <div *ngIf="room" class="row room-content">
+    <div class="col-12 header bg-primary">
       This is where the videos will go
     </div>
-  </div>
-  <div class="row">
-    <div class="col-11">
-      Here are the cards
+    <div class="col-10 content bg-info">
+      <h1>Room {{room.name}}</h1>
+      <ol>
+        <li *ngFor="let player of room.players">{{player.name}}</li>
+      </ol>
     </div>
-    <div class="col-1">
+    <div class="col-2 content bg-warning">
       Game Info
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
+    <div class="col-12 footer bg-success">
       This is the host and clip information section
     </div>
   </div>

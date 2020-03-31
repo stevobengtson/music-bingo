@@ -6,7 +6,7 @@ import { Room } from '../room';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.sass']
+  styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
   name = '';
@@ -16,7 +16,7 @@ export class CreateComponent {
     private readonly roomService: RoomService
   ) {}
 
-  onSubmit() { 
+  onSubmit() {
     this.roomService.createRoom(this.name).subscribe((room: Room) => {
       this.router.navigate(['/', room.key]);
     });
