@@ -1,17 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { CookieService } from 'ngx-cookie-service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { GamesModule } from './games/games.module';
 import { PlayersModule } from './players/players.module';
 import { RoomsModule } from './rooms/rooms.module';
-import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,11 @@ import { GameService } from './services/game.service';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgBootstrapFormValidationModule.forRoot(),
     AppRoutingModule,
+    GamesModule,
     PlayersModule,
     RoomsModule
   ],
-  providers: [GameService],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

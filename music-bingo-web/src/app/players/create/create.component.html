@@ -1,4 +1,10 @@
 <form [formGroup]="playerForm">
+  <h1>Select from existing players:</h1>
+  <div class="form-group form-check" *ngFor="let player of players.controls; let i = index">
+    <input type="checkbox" class="form-check-input" [formControl]="player">
+    <label class="form-check-label">{{existingPlayers[i].name}}</label>
+  </div>
+  <h2>Create new players:</h2>
   <div formArrayName="playerNames">
     <div class="form-group" *ngFor="let playerName of playerNames.controls; let i=index">
       <label>Player {{i + 1}}:</label>

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class RoomService {
   private readonly baseUrl: string = 'http://localhost:3000/rooms';
+
   constructor(private readonly http: HttpClient) { }
 
   createRoom(name: string): Observable<Room> {

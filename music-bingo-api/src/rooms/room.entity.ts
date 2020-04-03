@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, ManyToMany, JoinTable, ManyToOne, OneToMany } from 'typeorm';
 import { Player } from 'src/players/player.entity';
+import { Game } from 'src/games/game.entity';
 
 @Entity()
 export class Room {
@@ -9,7 +10,7 @@ export class Room {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: ''})
   key: string;
 
   @Column({ default: true })
@@ -21,10 +22,11 @@ export class Room {
   @JoinTable()
   players: Player[];
 
+  @OneToMany(type => Game, game => game.room)
+  games: Game[];
+
   @BeforeInsert()
   generateKey() {
-    if (!this.key) {
-      this.key = Math.random().toString(36).substring(7);
-    }
+    this.key = Math.random().toString(36).substring(7);
   }
 }

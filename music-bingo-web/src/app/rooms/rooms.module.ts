@@ -11,13 +11,15 @@ import { CreateComponent } from './create/create.component';
 import { RoomsComponent } from './rooms.component';
 import { ListComponent } from './list/list.component';
 import { PlayersModule } from '../players/players.module';
+import { HostControlsComponent } from './host-controls/host-controls.component';
 
 @NgModule({
   declarations: [
     RoomsComponent,
     RoomComponent,
     CreateComponent,
-    ListComponent
+    ListComponent,
+    HostControlsComponent
   ],
   imports: [
     CommonModule,

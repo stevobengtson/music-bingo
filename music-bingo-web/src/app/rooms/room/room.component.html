@@ -12,17 +12,17 @@
     <div class="col-12 header bg-primary">
       This is where the videos will go
     </div>
-    <div class="col-10 content bg-info">
+    <div class="col-10 content">
       <h1>Room {{room.name}}</h1>
       <ol>
         <li *ngFor="let player of room.players">{{player.name}}</li>
       </ol>
     </div>
-    <div class="col-2 content bg-warning">
+    <div class="col-2 content info-bar">
       Game Info
     </div>
-    <div class="col-12 footer bg-success">
-      This is the host and clip information section
+    <div class="col-12 footer">
+      <app-host-controls></app-host-controls>
     </div>
   </div>
 </ng-template>
