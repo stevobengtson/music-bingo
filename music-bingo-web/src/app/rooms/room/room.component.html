@@ -5,7 +5,7 @@
         <p class="lead">Add players to room (up to 4)</p>
     </div>
   </div>
-  <app-player-create [roomKey]="room.key" (playersAddedEvent)="updatePlayers($event)"></app-player-create>
+  <app-create-players [roomKey]="room.key" (playersAddedEvent)="updatePlayers($event)"></app-create-players>
 </div>
 <ng-template #show_room>
   <div *ngIf="room" class="row room-content">
@@ -15,7 +15,7 @@
     <div class="col-10 content">
       <h1>Room {{room.name}}</h1>
       <ol>
-        <li *ngFor="let player of room.players">{{player.name}}</li>
+        <li *ngFor="let player of players">{{player.name}}</li>
       </ol>
     </div>
     <div class="col-2 content info-bar">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService, GameState } from 'src/app/games/game.service';
-import { StaticReflector } from '@angular/compiler';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateGameComponent } from 'src/app/games/create-game/create-game.component';
 
 @Component({
   selector: 'app-host-controls',
@@ -12,7 +13,10 @@ export class HostControlsComponent implements OnInit {
   isHost = false;
   clipPlaying = false;
 
-  constructor(private readonly gameService: GameService) { }
+  constructor(
+    private modalService: NgbModal,
+    private readonly gameService: GameService
+  ) { }
 
   ngOnInit(): void {
     this.gameService.gameState.subscribe((state: GameState) => {
@@ -30,6 +34,6 @@ export class HostControlsComponent implements OnInit {
   }
 
   startNewGame() {
-    this.gameService.startNewGame();
+    this.modalService.open(CreateGameComponent, { size: 'lg', centered: true });
   }
 }

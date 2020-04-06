@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { GameService } from './game.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CreateGameComponent } from './create-game/create-game.component';
 
 @NgModule({
   declarations: [CreateGameComponent],
-  imports: [CommonModule],
-  providers: [GameService],
-  exports: [GameService]
+  imports: [CommonModule, NgbModule]
 })
 export class GamesModule { }

@@ -5,11 +5,11 @@ import { Room } from '../room';
 import { GameService } from 'src/app/games/game.service';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-room',
+  templateUrl: './create-room.component.html',
+  styleUrls: ['./create-room.component.scss']
 })
-export class CreateComponent {
+export class CreateRoomComponent {
   name = '';
 
   constructor(

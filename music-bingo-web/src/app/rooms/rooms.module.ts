@@ -7,18 +7,19 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { RoomsRoutingModule } from './rooms-routing.module';
 
 import { RoomComponent } from './room/room.component';
-import { CreateComponent } from './create/create.component';
+import { CreateRoomComponent } from './create-room/create-room.component';
 import { RoomsComponent } from './rooms.component';
-import { ListComponent } from './list/list.component';
+import { ListRoomsComponent } from './list-rooms/list-rooms.component';
 import { PlayersModule } from '../players/players.module';
 import { HostControlsComponent } from './host-controls/host-controls.component';
+import { GamesModule } from '../games/games.module';
 
 @NgModule({
   declarations: [
     RoomsComponent,
     RoomComponent,
-    CreateComponent,
-    ListComponent,
+    CreateRoomComponent,
+    ListRoomsComponent,
     HostControlsComponent
   ],
   imports: [
@@ -26,6 +27,7 @@ import { HostControlsComponent } from './host-controls/host-controls.component';
     FormsModule,
     NgBootstrapFormValidationModule,
     RoomsRoutingModule,
+    GamesModule,
     PlayersModule
   ]
 })

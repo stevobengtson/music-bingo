@@ -1,1 +1,45 @@
-<p>create-game works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+  </div>
+  <div class="modal-body">
+    <p>Create a new game</p>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Select Category</a>
+            <ng-template ngbNavContent>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Category</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>80s</td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>90s</td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>2k</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Card Win Type</a>
+            <ng-template ngbNavContent>
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="closeDialog()">Start</button>
+      <button type="button" class="btn btn-outline-danger" (click)="dismissDialog()">Cancel</button>
+  </div>

@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { RoomComponent } from './room/room.component';
-import { CreateComponent } from './create/create.component';
-import { ListComponent } from './list/list.component';
+import { CreateRoomComponent } from './create-room/create-room.component';
+import { ListRoomsComponent } from './list-rooms/list-rooms.component';
 
 const routes: Routes = [
-    { path: '', component:  ListComponent },
-    { path: 'create', component: CreateComponent },
+    { path: '', component:  ListRoomsComponent },
+    { path: 'create', component: CreateRoomComponent },
     { path: ':key', component: RoomComponent },
     { path: '**', component: PageNotFoundComponent }
 ];

@@ -6,11 +6,11 @@ import { Player } from '../player';
 import { Room } from 'src/app/rooms/room';
 
 @Component({
-  selector: 'app-player-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-players',
+  templateUrl: './create-players.component.html',
+  styleUrls: ['./create-players.component.scss']
 })
-export class PlayerCreateComponent implements OnInit {
+export class CreatePlayersComponent implements OnInit {
   @Input() roomKey: string;
   @Output() playersAddedEvent = new EventEmitter<Player[]>();
 

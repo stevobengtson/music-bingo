@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+class Category {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-create-game',
@@ -6,10 +12,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-game.component.scss']
 })
 export class CreateGameComponent implements OnInit {
+  categories: Category[];
+  active = 1;
 
-  constructor() { }
+  // The actual model should be separate than this component
+  constructor(private readonly activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
+  dismissDialog() {
+    this.activeModal.dismiss('Cross click');
+  }
+
+  closeDialog() {
+    this.activeModal.close('Close click');
+  }
 }

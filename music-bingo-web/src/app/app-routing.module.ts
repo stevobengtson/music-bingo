@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   { path: '', redirectTo: '/rooms', pathMatch: 'full' },
-  { path: 'rooms', loadChildren: './rooms/rooms.module#RoomsModule' },
+  { path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
 

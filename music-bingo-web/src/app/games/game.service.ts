@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 import { CookieService } from 'ngx-cookie-service';
 import { Room } from '../rooms/room';
 import { Player } from '../players/player';
 import { RoomService } from '../rooms/room.service';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 export enum GameState {
   NONE,
@@ -102,12 +103,16 @@ export class GameService {
     const roomDetails = this.cookieService.get(this.COOKIE_GAME_DETAILS);
     if (roomDetails) {
       this.currentGame = JSON.parse(roomDetails);
-      this.loadRoom(this.currentGame.room.key);
+      if (this.currentGame.room) {
+        this.loadRoom(this.currentGame.room.key);
+      } else {
+        this.currentGame = this.initializeGame();
+      }
     } else {
       this.currentGame = this.initializeGame();
-      this.storeGameDetails();
     }
-
+    
+    this.storeGameDetails();  
     this.updateGameDetails();
   }
 
