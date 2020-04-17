@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { GameService } from './games/game.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +6,4 @@ import { GameService } from './games/game.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'music-bingo-web';
-
-  constructor(
-    private readonly gameService: GameService
-  ) {
-    this.gameService.initialize();
-  }
 }

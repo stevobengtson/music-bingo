@@ -1,0 +1,9 @@
+<button *ngIf="!card || card.length == 0" class="btn btn-success" (click)="getGameCard()">Get Card</button>
+<div class="row game-card" *ngIf="card && card.length > 0">
+    <ng-container *ngFor="let clip of card; let i = index">
+        <div class="col-1 border border-primary" *ngIf="i % 5 == 0"></div>
+        <div class="col-2 border text-center" *ngIf="i == 12">Free</div>
+        <div class="col-2 border text-center" *ngIf="i != 12">{{clip.name}}<br>({{clip.artist}})</div>
+        <div class="col-1 border border-primary" *ngIf="i % 5 == 4"></div>
+    </ng-container>
+</div>

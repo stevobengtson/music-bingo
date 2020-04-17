@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="text-center">
+        <h1 class="display-4">Music Bingo</h1>
+        <p class="lead">Create or Join a Music Bingo Game.</p>
+    </div>
+  </div>
+  
+  <div class="row justify-content-end">
+    <div class="col-4">
+        <button type="button" class="btn btn-primary btn-lg" routerLink="/games/create">Create Room</button>
+        <button type="button" class="btn btn-secondary btn-lg" (click)="getCurrentGames()">Refresh</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let game of currentGames">
+                <th scope="row">{{game.key}}</th>
+                <td><button class="btn btn-primary" routerLink="/games/{{game.key}}">Join</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  

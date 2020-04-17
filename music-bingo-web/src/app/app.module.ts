@@ -12,8 +12,6 @@ import { environment } from '../environments/environment';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { GamesModule } from './games/games.module';
-import { PlayersModule } from './players/players.module';
-import { RoomsModule } from './rooms/rooms.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +25,7 @@ import { RoomsModule } from './rooms/rooms.module';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgBootstrapFormValidationModule.forRoot(),
     AppRoutingModule,
-    GamesModule,
-    PlayersModule,
-    RoomsModule
+    GamesModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
