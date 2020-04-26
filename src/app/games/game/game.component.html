@@ -1,28 +1,14 @@
-<button *ngIf="!card" class="btn btn-success" (click)="getGameCard()">Get Card</button>
-<div class="row game-card" *ngIf="card">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th class="text-center align-middle" scope="col">B</th>
-                <th class="text-center align-middle" scope="col">I</th>
-                <th class="text-center align-middle" scope="col">N</th>
-                <th class="text-center align-middle" scope="col">G</th>
-                <th class="text-center align-middle" scope="col">O</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cardRow of [0,1,2,3,4]">
-                <td class="text-center align-middle"
-                    *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
-                    (click)="toggleState(cardRow, cardCol)">
-                    <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
-                        {{card[cardCol][cardRow].name}}<br>({{card[cardCol][cardRow].artist}})
-                    </ng-container>
-                    <ng-template #freeSpace>
-                        Free
-                    </ng-template>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<block-ui>
+    <div class="row">
+        <div class="col-sm text-center">
+            <h1 class="display-4">Music Bingo: {{gameName}}</h1>
+            <button type="button" class="btn btn-outline-danger btn-lg" routerLink="/games">Back to Games</button>
+            <button type="button" *ngIf="!card" class="btn btn-success btn-lg" (click)="getGameCard()">Get Card</button>
+            <button type="button" *ngIf="card" class="btn btn-warning btn-lg" (click)="getGameCard()">Get NEW Card</button>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center" *ngIf="card">
+        <app-card [card]="card"></app-card>
+    </div>
+</block-ui>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { Game, Clip, Card } from './game';
+import { Game, Card } from './game';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,12 @@ export class GameService {
     private readonly http: HttpClient
   ) { }
 
-  getMany(page: number = 0, limit: number = 10): Observable<Game[]> {
-    return this.http.get<Game[]>(`${this.BASE_URL}?page=${page}&limit=${limit}`);
+  createGame(gameName: string, categoryId: number): Observable<Game> {
+    return this.http.post<Game>(`${this.BASE_URL}`, { game: { name: gameName, category_id: categoryId } });
+  }
+
+  getMany(page: number = 1, limit: number = 10): Observable<HttpResponse<Game[]>> {
+    return this.http.get<Game[]>(`${this.BASE_URL}?page=${page}&limit=${limit}`, {observe: 'response'});
   }
 
   getGameByKey(key: string): Observable<Game> {

@@ -26,5 +26,6 @@ export class Category {
 export class Game {
     id?: number;
     key?: string;
+    name?: string;
     category: Category[];
 }

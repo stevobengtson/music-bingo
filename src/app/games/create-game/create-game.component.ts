@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-class Category {
-  id: number;
-  name: string;
-}
+import { CategoryService } from '../../categories/category.service';
+import { Category, Game } from '../game';
+import { GameService } from '../game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-game',
@@ -13,19 +11,24 @@ class Category {
 })
 export class CreateGameComponent implements OnInit {
   categories: Category[];
-  active = 1;
 
-  // The actual model should be separate than this component
-  constructor(private readonly activeModal: NgbActiveModal) { }
+  gameName: string;
+  selectedCategory: number = 1;
+
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly gameService: GameService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.categoryService.getMany().subscribe((categories: Category[]) => this.categories = categories);
   }
 
-  dismissDialog() {
-    this.activeModal.dismiss('Cross click');
-  }
-
-  closeDialog() {
-    this.activeModal.close('Close click');
+  onSubmit() {
+    console.log('Creating game: ', this.gameName, this.selectedCategory);
+    this.gameService
+        .createGame(this.gameName, this.selectedCategory)
+        .subscribe((game: Game) => this.router.navigate(['games', game.key]));
   }
 }
