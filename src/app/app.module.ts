@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { GamesModule } from './games/games.module';
 import { CategoriesModule } from './categories/categories.module';
+import { ClipsModule } from './clips/clips.module';
 import { AdminModule } from './admin/admin.module';
 
 import { LocalStorageService } from './local-storage.service';
@@ -21,10 +23,11 @@ import { LocalStorageService } from './local-storage.service';
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -34,6 +37,7 @@ import { LocalStorageService } from './local-storage.service';
     StorageServiceModule,
     GamesModule,
     CategoriesModule,
+    ClipsModule,
     AdminModule
   ],
   providers: [

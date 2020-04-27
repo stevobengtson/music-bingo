@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { Category } from '../games/game';
+import { Category, Clip } from '../games/game';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,9 @@ export class CategoryService {
 
   createCategory(categoryName: string): Observable<Category> {
     return this.http.post<Category>(`${this.baseUrl}`, { category: { name: categoryName } });
+  }
+
+  getClips(categoryId: number, page: number = 1, pageSize: number = 10) : Observable<Clip[]> {
+    return this.http.get<Clip[]>(`${this.baseUrl}/${categoryId}/clips?page=${page}&limit=${pageSize}`);
   }
 }

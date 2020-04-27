@@ -4,12 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { CategoryService } from './category.service';
 import { CreateCategoryComponent } from './create-category.component';
-import { ClipsComponent } from './clips/clips.component';
 
 @NgModule({
   declarations: [
-    CreateCategoryComponent,
-    ClipsComponent
+    CreateCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +17,7 @@ import { ClipsComponent } from './clips/clips.component';
     CategoryService
   ],
   exports: [
-    CreateCategoryComponent,
-    ClipsComponent
+    CreateCategoryComponent
   ]
 })
 export class CategoriesModule { }
