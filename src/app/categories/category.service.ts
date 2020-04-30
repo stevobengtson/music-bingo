@@ -3,12 +3,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Category, Clip } from '../games/game';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private readonly baseUrl: string = 'http://localhost:3000/categories';
+  private readonly baseUrl: string = `${environment.api_url}/categories`;
 
   constructor(private readonly http: HttpClient) { }
 

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Clip } from '../games/game';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClipService {
-  private readonly BASE_URL: string = 'http://localhost:3000/clips';
-  private readonly CATEGORY_BASE_URL: string = 'http://localhost:3000/categories';
+  private readonly BASE_URL: string = `${environment.api_url}/clips`;
+  private readonly CATEGORY_BASE_URL: string = `${environment.api_url}/categories`;
 
   constructor(private readonly http: HttpClient) { }
 
