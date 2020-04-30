@@ -27,5 +27,5 @@ export class Game {
     id?: number;
     key?: string;
     name?: string;
-    category: Category[];
+    category?: Category;
 }

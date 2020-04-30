@@ -7,6 +7,9 @@
 
 <block-ui>
   <div class="row justify-content-end">
+    <div class="col float-right">
+        <app-page-limit-selector [(pageSize)]="pageSize" (pageSizeChange)="getCurrentGames()"></app-page-limit-selector>
+    </div>
     <div class="col-4">
         <button type="button" class="btn btn-primary btn-lg" routerLink="/games/create">Create Game</button>
         <button type="button" class="btn btn-secondary btn-lg" (click)="getCurrentGames()">Refresh</button>
@@ -18,6 +21,7 @@
             <thead>
               <tr>
                 <th scope="col">Name</th>
+                <th scope="col">Category</th>
                 <th scope="col">Key</th>
                 <th scope="col"></th>
               </tr>
@@ -25,7 +29,8 @@
             <tbody>
               <tr *ngFor="let game of currentGames">
                 <th scope="row">{{game.name}}</th>
-                <th scope="row">{{game.key}}</th>
+                <td scope="row">{{game.category.name}}</td>
+                <td scope="row">{{game.key}}</td>
                 <td><button class="btn btn-primary" routerLink="/games/{{game.key}}">Join</button></td>
               </tr>
             </tbody>
@@ -36,7 +41,7 @@
   <div class="row">
     <div class="col-sm">
       <ngb-pagination [(page)]="page"
-                      [pageSize]="limit"
+                      [pageSize]="pageSize"
                       [collectionSize]="total"
                       (pageChange)="getCurrentGames()"></ngb-pagination>
     </div>

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   page: number = 1;
-  limit: number = 10;
+  pageSize: number = 10;
   total: number = 0;
 
   currentGames: Game[] = [];
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   getCurrentGames() {
     this.blockUI.start('Refreshing...');
     this.gameService
-        .getMany(this.page, this.limit)
+        .getMany(this.page, this.pageSize)
         .subscribe(
           (gameResponse: HttpResponse<Game[]>) => {
             this.total = parseInt(gameResponse.headers.get('Total'));

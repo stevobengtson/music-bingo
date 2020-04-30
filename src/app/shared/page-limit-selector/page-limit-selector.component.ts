@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-page-limit-selector',
@@ -6,5 +6,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./page-limit-selector.component.scss']
 })
 export class PageLimitSelectorComponent {
-  @Input() pageSize: number;
+  _pageSize: number = 10;
+
+  @Output() pageSizeChange = new EventEmitter<number>();
+
+  @Input('pageSize')
+  set pageSize(val: number) {
+    this._pageSize = val;
+    this.pageSizeChange.emit(val);
+  }
+
+  get pageSize(): number {
+    return this._pageSize;
+  }
 }
