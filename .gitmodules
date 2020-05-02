@@ -1,3 +1,6 @@
 [submodule "web"]
 	path = web
 	url = git@github.com:stevobengtson/music-bingo-web.git
+[submodule "api"]
+	path = api
+	url = git@github.com:stevobengtson/music-bingo-api.git
