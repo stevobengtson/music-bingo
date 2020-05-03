@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=1.0.4
+version=1.0.5
 
 echo "Building containers..."
 echo "Building web..."
@@ -16,8 +16,10 @@ docker tag stevobengtson/music-bingo-api:$version stevobengtson/music-bingo-api:
 
 echo "Pushing containers to docker hub..."
 echo "Pushing web container to docker hub..."
+docker push stevobengtson/music-bingo-web:$version
 docker push stevobengtson/music-bingo-web:latest
 echo "Pushing api container to docker hub..."
+docker push stevobengtson/music-bingo-api:$version
 docker push stevobengtson/music-bingo-api:latest
 
 echo "Complete"
