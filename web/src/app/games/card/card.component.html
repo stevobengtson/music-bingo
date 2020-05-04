@@ -1,0 +1,22 @@
+<div class="row display-flex">
+    <div class="card-header text-light bg-dark col-2 border border-dark text-center align-middle">B</div>
+    <div class="card-header text-light bg-dark col-2 border border-dark text-center align-middle">I</div>
+    <div class="card-header text-light bg-dark col-2 border border-dark text-center align-middle">N</div>
+    <div class="card-header text-light bg-dark col-2 border border-dark text-center align-middle">G</div>
+    <div class="card-header text-light bg-dark col-2 border border-dark text-center align-middle">O</div>
+</div>
+
+<div class="row display-flex"
+     *ngFor="let cardRow of [0,1,2,3,4]">
+     <div class="card-content col-2 border text-center align-middle"
+          [ngClass]="{ 'bg-info': !card[cardCol][cardRow] || card[cardCol][cardRow].isSelected }"
+          *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
+          (click)="toggleState(cardRow, cardCol)">
+        <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
+            {{card[cardCol][cardRow].name}}<br>({{card[cardCol][cardRow].artist}})
+        </ng-container>
+        <ng-template #freeSpace>
+            Free
+        </ng-template>     
+    </div>
+</div>

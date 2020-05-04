@@ -1,0 +1,9 @@
+<app-create-category (onCategoryCreated)="onCategoryCreated($event)"></app-create-category>
+<hr />
+<ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-panel *ngFor="let category of categories" [id]="'category_' + category.id" title="{{category.name}}">
+        <ng-template ngbPanelContent>
+            <app-clips [categoryId]="category.id"></app-clips>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
