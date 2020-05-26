@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-
+import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category, Clip } from '../games/game';
-import { environment } from 'src/environments/environment';
+import { Category, Clip } from '../models/game';
+import { BaseRequestService } from '@api/base-request.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
-  private readonly baseUrl: string = `${environment.api_url}/categories`;
-
-  constructor(private readonly http: HttpClient) { }
+export class CategoryService extends BaseRequestService {
+  protected path = '/categories';
 
   getMany(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.baseUrl}?start=0&limit=100`);
@@ -24,4 +21,8 @@ export class CategoryService {
   getClips(categoryId: number, page: number = 1, pageSize: number = 10) : Observable<HttpResponse<Clip[]>> {
     return this.http.get<Clip[]>(`${this.baseUrl}/${categoryId}/clips?page=${page}&limit=${pageSize}`, {observe: 'response'});
   }
+
+  createClip(clip: Clip, categoryId: number): Observable<Clip> {
+    return this.http.post<Clip>(`${this.baseUrl}/${categoryId}/clips`, { clip });
+  }  
 }

@@ -12,23 +12,20 @@
 
 ActiveRecord::Schema.define(version: 2020_04_25_220444) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories_clips", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "clip_id"
+  create_table "categories_clips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "clip_id"
     t.index ["category_id"], name: "index_categories_clips_on_category_id"
     t.index ["clip_id"], name: "index_categories_clips_on_clip_id"
   end
 
-  create_table "clips", force: :cascade do |t|
+  create_table "clips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "artist"
     t.integer "start"
@@ -38,11 +35,11 @@ ActiveRecord::Schema.define(version: 2020_04_25_220444) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "games", force: :cascade do |t|
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "category_id"
+    t.bigint "category_id"
     t.string "name"
     t.index ["category_id"], name: "index_games_on_category_id"
   end

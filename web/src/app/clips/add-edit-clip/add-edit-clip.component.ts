@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Clip } from 'src/app/games/game';
-import { ClipService } from '../clip.service';
+import { Clip } from 'src/app/api/models/game';
+import { ClipService } from '../../api/repositories/clip.service';
 
 @Component({
   selector: 'app-add-edit-clip',

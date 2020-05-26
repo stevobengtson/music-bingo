@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CategoryService } from './category.service';
 import { CreateCategoryComponent } from './create-category.component';
 
 @NgModule({
@@ -13,9 +12,7 @@ import { CreateCategoryComponent } from './create-category.component';
     CommonModule,
     FormsModule
   ],
-  providers: [
-    CategoryService
-  ],
+  providers: [],
   exports: [
     CreateCategoryComponent
   ]

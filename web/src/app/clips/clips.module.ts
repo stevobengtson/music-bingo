@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { ClipsComponent } from './clips.component';
-import { ClipService } from './clip.service';
 import { AddEditClipComponent } from './add-edit-clip/add-edit-clip.component';
 import { AddEditClipDialogComponent } from './add-edit-clip-dialog/add-edit-clip-dialog.component';
 
@@ -22,9 +21,7 @@ import { AddEditClipDialogComponent } from './add-edit-clip-dialog/add-edit-clip
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [
-    ClipService
-  ],
+  providers: [],
   exports: [
     ClipsComponent
   ]

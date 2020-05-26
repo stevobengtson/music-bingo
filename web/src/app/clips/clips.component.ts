@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
-import { CategoryService } from '../categories/category.service';
-import { Clip } from '../games/game';
+import { CategoryService } from '../api/repositories/category.service';
+import { Clip } from '../api/models/game';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditClipDialogComponent } from './add-edit-clip-dialog/add-edit-clip-dialog.component';
 

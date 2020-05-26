@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
-import { Game } from '../game';
-import { GameService } from '../game.service';
+import { Game } from '../../api/models/game';
+import { GameService } from '../../api/repositories/game.service';
 
 @Component({
   selector: 'app-home',

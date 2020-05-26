@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
-import { GameService } from '../game.service';
-import { Game, Card } from '../game';
+import { GameService } from '../../api/repositories/game.service';
+import { Game, Card } from '../../api/models/game';
 import { LocalStorageService } from '../../local-storage.service';
 
 @Component({

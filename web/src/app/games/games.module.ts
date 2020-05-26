@@ -11,13 +11,11 @@ import { CreateGameComponent } from './create-game/create-game.component';
 import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 
-import { GameService } from './game.service';
-import { CategoryService } from '../categories/category.service';
 import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [CreateGameComponent, HomeComponent, GameComponent, CardComponent],
   imports: [CommonModule, FormsModule, NgbModule, GamesRoutingModule, BlockUIModule.forRoot(), SharedModule],
-  providers: [GameService, CategoryService]
+  providers: []
 })
 export class GamesModule { }

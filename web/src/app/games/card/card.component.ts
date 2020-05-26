@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Card } from '../game';
+import { Card } from '../../api/models/game';
 
 class BlockDetails {
   row: number;

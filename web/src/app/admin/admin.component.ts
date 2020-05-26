@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../games/game';
-import { CategoryService } from '../categories/category.service';
+import { Category } from '../api/models/game';
+import { CategoryService } from '../api/repositories/category.service';
 
 @Component({
   selector: 'app-admin',
