@@ -31,7 +31,10 @@
                 <th scope="row">{{game.name}}</th>
                 <td scope="row">{{game.category.name}}</td>
                 <td scope="row">{{game.key}}</td>
-                <td><button class="btn btn-primary" routerLink="/games/{{game.key}}">Join</button></td>
+                <td>
+                  <button class="btn btn-primary" routerLink="/games/{{game.key}}">Join</button>
+                  <button class="btn btn-sm btn-info" routerLink="/games/{{game.id}}/play_list">Play List</button>
+                </td>
               </tr>
             </tbody>
           </table>

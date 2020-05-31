@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Clip } from 'src/app/api/models/game';
+import { Clip } from '@api/models/game';
 
 @Component({
   selector: 'app-add-edit-clip-dialog',

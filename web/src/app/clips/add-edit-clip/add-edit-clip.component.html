@@ -1,19 +1,19 @@
 <form *ngIf="clip" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="clip.name">
+        <input type="text" ngbAutofocus class="form-control" name="name" [(ngModel)]="clip.name">
     </div>
     <div class="form-group">
         <label>Artist</label>
         <input type="text" class="form-control" name="artist" [(ngModel)]="clip.artist">
     </div>
     <div class="form-group">
-        <label>Start</label>
-        <input type="number" class="form-control" name="start" [(ngModel)]="clip.start">
+        <label>Start Time</label>
+        <ngb-timepicker [(ngModel)]="clip.start" name="start" [seconds]="true" [spinners]="false"></ngb-timepicker>
     </div>
     <div class="form-group">
-        <label>Length</label>
-        <input type="number" class="form-control" name="length" [(ngModel)]="clip.length">
+        <label>End Time</label>
+        <ngb-timepicker [(ngModel)]="clip.end" name="end" [seconds]="true" [spinners]="false"></ngb-timepicker>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
