@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <button class="btn btn-sm btn-outline-danger" routerLink="/games">Back to Games</button>
+    <button class="btn btn-sm btn-danger" (click)="getPlayList()">Refresh</button>
+  </div>
+</div>
+<hr/>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Played?</th>
+      <th>Artist</th>
+      <th>Song</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let clip of playList; index as index">
+      <td>
+        <div class="btn-group btn-group-toggle">
+          <label [ngClass]="{ 'btn-success': clip.isSelected, 'btn-secondary': !clip.isSelected }" ngbButtonLabel>
+            <input type="checkbox" ngbButton [(ngModel)]="clip.isSelected" (change)="onClipPlayed()">{{clip.isSelected ? 'Yes' : 'No'}}
+          </label>
+        </div>
+      </td>
+      <td>{{clip.artist}}</td>
+      <td>{{clip.name}}</td>
+      <td>{{clip.start * 1000 | date:'mm:ss'}}</td>
+      <td>{{(clip.start + clip.length) * 1000 | date:'mm:ss'}}</td>
+      <td>{{clip.length * 1000 | date:'mm:ss'}}</td>
+    </tr>
+  </tbody>
+</table>
