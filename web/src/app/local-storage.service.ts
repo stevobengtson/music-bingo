@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { Card } from './api/models/game';
+import { Card, Clip } from '@api/models/game';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,13 @@ export class LocalStorageService {
 
   get playerCard(): Card {
     return this.storage.get('player-card');
+  }
+
+  setGamePlayList(gameId: number, clips: Clip[]) {
+    this.storage.set(`game-playlist-${gameId}`, clips);
+  }
+
+  getGamePlayList(gameId: number): Clip[] {
+    return this.storage.get(`game-playlist-${gameId}`);
   }
 }

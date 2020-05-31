@@ -4,6 +4,7 @@ export class Clip {
     name: string;
     artist: string;
     start: number;
+    end?: number;
     length: number;
     location?: string;
     isSelected?: boolean;

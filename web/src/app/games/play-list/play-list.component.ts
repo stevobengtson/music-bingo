@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { GameService } from '../game.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { Clip } from '../game';
+import { GameService } from '@api/repositories/game.service';
+import { LocalStorageService } from '@app/local-storage.service';
+import { Clip } from '@api/models/game';
 
 @Component({
   selector: 'app-play-list',

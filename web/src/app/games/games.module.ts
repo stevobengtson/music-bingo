@@ -11,7 +11,6 @@ import { CreateGameComponent } from './create-game/create-game.component';
 import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 
-import { GameService } from './game.service';
 import { CardComponent } from './card/card.component';
 import { PlayListComponent } from './play-list/play-list.component';
 
@@ -30,9 +29,6 @@ import { PlayListComponent } from './play-list/play-list.component';
     GamesRoutingModule,
     BlockUIModule.forRoot(),
     SharedModule
-  ],
-  providers: [
-    GameService
   ]
 })
 export class GamesModule { }
