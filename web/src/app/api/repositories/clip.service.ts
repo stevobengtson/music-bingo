@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Clip } from '../models/game';
+import { Clip } from '@api/models/clip';
 import { Observable } from 'rxjs';
 import { BaseRequestService } from '@api/base-request.service';
 import { AppConfigService } from '@services/app-config.service';
@@ -9,7 +9,7 @@ import { CategoryService } from './category.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ClipService extends BaseRequestService {
+export class ClipService extends BaseRequestService<Clip> {
   protected path = '/clips';
   
   constructor(

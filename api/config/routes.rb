@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  resources :rooms
   scope :api do
-    resources :categories, shallow: true do
-      resources :clips
-    end
+    resources :rooms
 
     resources :games do
       collection do
@@ -14,6 +11,10 @@ Rails.application.routes.draw do
         get 'card'
         get 'play_list'
       end
+    end
+
+    resources :categories, shallow: true do
+      resources :clips
     end
   end
   

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { GameService } from '@api/repositories/game.service';
 import { LocalStorageService } from '@app/services/local-storage.service';
-import { Clip } from '@api/models/game';
+import { Clip } from '@api/models/clip';
 
 @Component({
   selector: 'app-play-list',

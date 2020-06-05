@@ -3,9 +3,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms
   def index
-    @rooms = Room.all
-
-    render json: @rooms
+    paginate json: Room.all, per_page: params[:limit], page: params[:page]
   end
 
   # GET /rooms/1

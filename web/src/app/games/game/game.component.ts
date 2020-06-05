@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
-import { GameService } from '../../api/repositories/game.service';
-import { Game, Card } from '../../api/models/game';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { GameService } from '@api/repositories/game.service';
+import { Game } from '@api/models/game';
+import { LocalStorageService } from '@services/local-storage.service';
+import { Card } from '@app/api/models/card';
 
 @Component({
   selector: 'app-game',

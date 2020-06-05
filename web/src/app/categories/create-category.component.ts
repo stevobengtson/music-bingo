@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CategoryService } from '../api/repositories/category.service';
-import { Category } from '../api/models/game';
+import { CategoryService } from '@api/repositories/category.service';
+import { Category } from '@api/models/category';
 
 @Component({
   selector: 'app-create-category',
@@ -18,8 +18,12 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   onSubmit() {
+    const newCategory: Category = {
+      name: this.categoryName
+    };
+  
     this.categoryService
-        .createCategory(this.categoryName)
+        .post(newCategory)
         .subscribe((category: Category) => {
           this.categoryName = null;
           this.onCategoryCreated.emit(category);

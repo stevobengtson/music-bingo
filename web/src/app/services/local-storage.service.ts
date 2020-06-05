@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { Card, Clip } from '@api/models/game';
+import { Card } from '@api/models/card';
+import { Clip } from '@app/api/models/clip';
 
 @Injectable({
   providedIn: 'root'

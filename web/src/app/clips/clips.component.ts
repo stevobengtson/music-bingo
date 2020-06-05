@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CategoryService } from '../api/repositories/category.service';
-import { Clip } from '../api/models/game';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Clip } from '@api/models/clip';
 import { AddEditClipDialogComponent } from './add-edit-clip-dialog/add-edit-clip-dialog.component';
 import { ClipService } from '@app/api/repositories/clip.service';
 import { ToastService } from '@app/services/toast.service';
@@ -46,7 +46,7 @@ export class ClipsComponent implements OnInit {
   }
 
   addClip() {
-    this.loadAddEditClipDialog(new Clip());
+    this.loadAddEditClipDialog({});
   }
 
   deleteClip(clip: Clip) {

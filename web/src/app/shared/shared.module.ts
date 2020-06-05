@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { PageLimitSelectorComponent } from './page-limit-selector/page-limit-selector.component';
 import { EditModeDirective } from './editable/edit-mode.directive';
@@ -22,7 +23,8 @@ import { TitleBarComponent } from './title-bar/title-bar.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [],
   exports: [

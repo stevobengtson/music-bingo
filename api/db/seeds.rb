@@ -105,10 +105,11 @@ category90.clips = Clip.create([
 category90.save
 
 categories = Category.all
-
-# Create a simple 80s Category Game
 100.times { |n|
     Game.create(category: categories.sample, name: Faker::Team.name)
     Game.create(category: categories.sample, name: Faker::Team.name)
 }
 
+100.times { |n| 
+    Room.create(name: Faker::Team.name)
+}

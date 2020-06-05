@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Injectable } from '@angular/core';
-import { Clip } from '@api/models/game';
+import { Clip } from '@api/models/clip';
 import { ClipService } from '@api/repositories/clip.service';
 import { NgbTimeAdapter, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '@app/services/toast.service';
@@ -47,7 +47,7 @@ export class AddEditClipComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.clip) {
-      this.clip = new Clip();
+      this.clip = { };
     }
 
     if (!this.clip.end) {

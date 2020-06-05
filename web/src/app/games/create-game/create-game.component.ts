@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../api/repositories/category.service';
-import { Category, Game } from '../../api/models/game';
+import { CategoryService } from '@api/repositories/category.service';
+import { Game } from '@api/models/game';
 import { GameService } from '@api/repositories/game.service';
 import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
+import { Category } from '@app/api/models/category';
 
 @Component({
   selector: 'app-create-game',
@@ -22,13 +24,21 @@ export class CreateGameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.getMany().subscribe((categories: Category[]) => this.categories = categories);
+    this.categoryService
+        .getMany()
+        .subscribe((response: HttpResponse<Category[]>) => {
+          this.categories = response.body;
+        });
   }
 
   onSubmit() {
-    console.log('Creating game: ', this.gameName, this.selectedCategory);
+    const newGame: Game = {
+      name: this.gameName,
+      category_id: this.selectedCategory
+    };
+
     this.gameService
-        .createGame(this.gameName, this.selectedCategory)
+        .post(newGame)
         .subscribe((game: Game) => this.router.navigate(['games', game.key]));
   }
 }

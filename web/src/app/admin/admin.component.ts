@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../api/models/game';
-import { CategoryService } from '../api/repositories/category.service';
+import { Category } from '@api/models/category';
+import { CategoryService } from '@api/repositories/category.service';
 import { ToastService } from '@app/services/toast.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -26,11 +27,15 @@ export class AdminComponent implements OnInit {
   }
 
   getCategoryList() {
-    this.categoryService.getMany().subscribe((categories: Category[]) => this.categories = categories);
+    this.categoryService
+        .getMany()
+        .subscribe((response: HttpResponse<Category[]>) => {
+          return this.categories = response.body;
+        });
   }
 
   deleteCategory(category: Category) {
-    this.categoryService.deleteCategory(category.id).subscribe(
+    this.categoryService.delete(category).subscribe(
       () => {
         this.toastService.success(`Deleted category ${category.name}`);
         this.getCategoryList();

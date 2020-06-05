@@ -1,0 +1,48 @@
+<block-ui>
+  <div class="row mb-1">
+    <div class="col">
+        <app-page-limit-selector (pageSizeChange)="getRoomList()"></app-page-limit-selector>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <div class="btn-group" role="group" aria-label="Actions">
+        <button type="button" class="btn btn-sm btn-success" (click)="getRoomList()">Create</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Key</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of roomList">
+                <th scope="row">{{room.name}}</th>
+                <td scope="row">{{room.key}}</td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-primary" routerLink="/rooms/{{room.key}}">Join</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <ngb-pagination [(page)]="page"
+                      [pageSize]="pageSize"
+                      [collectionSize]="total"
+                      [rotate]="true"
+                      [boundaryLinks]="true"
+                      [maxSize]="5"
+                      (pageChange)="getRoomList()"></ngb-pagination>
+    </div>
+  </div>
+</block-ui>
