@@ -20,6 +20,9 @@ export class CreateCategoryComponent implements OnInit {
   onSubmit() {
     this.categoryService
         .createCategory(this.categoryName)
-        .subscribe((category: Category) => this.onCategoryCreated.emit(category));
+        .subscribe((category: Category) => {
+          this.categoryName = null;
+          this.onCategoryCreated.emit(category);
+        });
   }
 }

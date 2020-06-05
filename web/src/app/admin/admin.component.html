@@ -1,7 +1,16 @@
+<app-title-bar title="Add/Edit Categories and Clips"></app-title-bar>
 <app-create-category (onCategoryCreated)="onCategoryCreated($event)"></app-create-category>
 <hr />
 <ngb-accordion [closeOthers]="true" activeIds="static-1">
-    <ngb-panel *ngFor="let category of categories" [id]="'category_' + category.id" title="{{category.name}}">
+    <ngb-panel *ngFor="let category of categories" [id]="'category_' + category.id">
+        <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="m-0">{{category.name}}</h5>
+                <div>
+                  <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="deleteCategory(category)">Delete</button>
+                </div>
+              </div>
+        </ng-template>
         <ng-template ngbPanelContent>
             <app-clips [categoryId]="category.id"></app-clips>
         </ng-template>

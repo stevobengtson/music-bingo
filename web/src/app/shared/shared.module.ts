@@ -8,6 +8,7 @@ import { EditableOnEnterDirective } from './editable/editable-on-enter.directive
 import { EditableComponent } from './editable/editable.component';
 import { ViewModeDirective } from './editable/view-mode.directive';
 import { FocusableDirective } from './focusable.directive';
+import { TitleBarComponent } from './title-bar/title-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FocusableDirective } from './focusable.directive';
     EditableOnEnterDirective,
     EditableComponent,
     ViewModeDirective,
-    FocusableDirective
+    FocusableDirective,
+    TitleBarComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { FocusableDirective } from './focusable.directive';
   providers: [],
   exports: [
     PageLimitSelectorComponent,
-    EditableComponent
+    EditableComponent,
+    TitleBarComponent
   ]
 })
 export class SharedModule { }

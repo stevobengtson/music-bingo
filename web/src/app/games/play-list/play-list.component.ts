@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { GameService } from '@api/repositories/game.service';
-import { LocalStorageService } from '@app/local-storage.service';
+import { LocalStorageService } from '@app/services/local-storage.service';
 import { Clip } from '@api/models/game';
 
 @Component({

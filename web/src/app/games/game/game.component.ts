@@ -5,7 +5,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { GameService } from '../../api/repositories/game.service';
 import { Game, Card } from '../../api/models/game';
-import { LocalStorageService } from '../../local-storage.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-game',
@@ -28,8 +28,6 @@ export class GameComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.getGame(params.key);
     });
-
-    this.card = this.localStorage.playerCard;
   }
 
   get gameKey(): string {
@@ -45,7 +43,10 @@ export class GameComponent implements OnInit {
     this.gameService
         .getGameByKey(key)
         .subscribe(
-          (game: Game) => this.game = game,
+          (game: Game) => {
+            this.game = game;
+            this.card = this.localStorage.getPlayerCard(this.game.id);
+          },
           (error: any) => console.error(error),
           () => this.blockUI.stop()
         );
@@ -58,10 +59,10 @@ export class GameComponent implements OnInit {
         .subscribe(
           (card: Card) => {
             this.card = card;
-            this.localStorage.playerCard = card;
+            this.localStorage.setPlayerCard(card, this.game.id);
           },
           (error: any) => console.error(error),
           () => this.blockUI.stop()
-        );
+        );    
   }
 }

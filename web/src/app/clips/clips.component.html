@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col float-right">
+    <div class="col">
         <app-page-limit-selector [(pageSize)]="pageSize" (pageSizeChange)="getClips()"></app-page-limit-selector>
     </div>
-    <div class="col-2">
-        <button type="button" class="btn btn-success" (click)="addClip()">Add Clip</button>
+    <div class="col d-flex justify-content-end">
+        <button type="button" class="btn btn-sm btn-success" (click)="addClip()">Add Clip</button>
     </div>
 </div>
 
@@ -27,7 +27,12 @@
                     <td>{{clip.start * 1000 | date:'mm:ss'}}</td>
                     <td>{{(clip.start + clip.length) * 1000 | date:'mm:ss'}}</td>
                     <td>{{clip.length * 1000 | date:'mm:ss'}}</td>
-                    <td><button type="button" class="btn btn-primary" (click)="editClip(clip)">Edit</button></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary" (click)="editClip(clip)">Edit</button>
+                            <button type="button" class="btn btn-sm btn-danger" (click)="deleteClip(clip)">Delete</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

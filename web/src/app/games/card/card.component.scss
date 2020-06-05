@@ -1,7 +1,14 @@
+.card-header {
+    width: 20%;
+}
+
+.card-content {
+    width: 20%;
+    flex-grow: 1;
+}
+
 .row.display-flex {
     display: flex;
     flex-wrap: wrap;
 }
-.row.display-flex > [class*='col-'] {
-    flex-grow: 1;
-}
+

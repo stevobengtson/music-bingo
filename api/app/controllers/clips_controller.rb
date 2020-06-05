@@ -36,6 +36,7 @@ class ClipsController < ApplicationController
   # DELETE /clips/1
   def destroy
     @clip.destroy
+    render json: @clip
   end
 
   private

@@ -19,7 +19,7 @@ echo "  Building to /var/www/music_bingo/web..."
 ng build --prod --output-path /var/www/music_bingo/web/
 echo "
 {
-    \"baseApiUrl\": \"http://192.168.86.51/api\"
+    \"baseApiUrl\": \"/api\"
 }" > /var/www/music_bingo/web/assets/settings.json
 popd
 echo "Angular deployment complete."

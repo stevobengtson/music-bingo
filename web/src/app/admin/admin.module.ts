@@ -8,6 +8,7 @@ import { AdminService } from './admin.service';
 import { AdminComponent } from './admin.component';
 import { CategoriesModule } from '../categories/categories.module';
 import { ClipsModule } from '../clips/clips.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [AdminComponent],
@@ -16,7 +17,8 @@ import { ClipsModule } from '../clips/clips.module';
     NgbAccordionModule,
     AdminRoutingModule,
     CategoriesModule,
-    ClipsModule
+    ClipsModule,
+    SharedModule
   ],
   providers: [AdminService]
 })

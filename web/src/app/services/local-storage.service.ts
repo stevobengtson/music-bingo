@@ -9,12 +9,13 @@ export class LocalStorageService {
 
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {}
 
-  set playerCard(card: Card) {
-    this.storage.set('player-card', card);
+
+  setPlayerCard(card: Card, gameId: number) {
+    this.storage.set(`player-card-${gameId}`, card);
   }
 
-  get playerCard(): Card {
-    return this.storage.get('player-card');
+  getPlayerCard(gameId: number): Card {
+    return this.storage.get(`player-card-${gameId}`);
   }
 
   setGamePlayList(gameId: number, clips: Clip[]) {

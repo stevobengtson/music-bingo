@@ -18,11 +18,15 @@ export class CategoryService extends BaseRequestService {
     return this.http.post<Category>(`${this.baseUrl}`, { category: { name: categoryName } });
   }
 
+  deleteCategory(categoryId: number): Observable<Category> {
+    return this.http.delete<Category>(`${this.baseUrl}/${categoryId}`);
+  }
+
   getClips(categoryId: number, page: number = 1, pageSize: number = 10) : Observable<HttpResponse<Clip[]>> {
     return this.http.get<Clip[]>(`${this.baseUrl}/${categoryId}/clips?page=${page}&limit=${pageSize}`, {observe: 'response'});
   }
 
   createClip(clip: Clip, categoryId: number): Observable<Clip> {
     return this.http.post<Clip>(`${this.baseUrl}/${categoryId}/clips`, { clip });
-  }  
+  }
 }

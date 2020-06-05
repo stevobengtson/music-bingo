@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, Injectable } from '@ang
 import { Clip } from '@api/models/game';
 import { ClipService } from '@api/repositories/clip.service';
 import { NgbTimeAdapter, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from '@app/services/toast.service';
 
 @Injectable()
 export class NgbTimeSecondsAdapter extends NgbTimeAdapter<number> {
@@ -39,7 +40,10 @@ export class AddEditClipComponent implements OnInit {
   @Input() categoryId: number;
   @Output() clipUpdated = new EventEmitter<Clip>();
 
-  constructor(private readonly clipService: ClipService) { }
+  constructor(
+    private clipService: ClipService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit(): void {
     if (!this.clip) {
@@ -54,9 +58,14 @@ export class AddEditClipComponent implements OnInit {
   onSubmit() {
     this.clip.length = this.clip.end - this.clip.start;
     this.clip.end = undefined;
+    const isNew = !this.clip.id;
 
     this.clipService.addOrUpdate(this.clip, this.categoryId).subscribe(
-      (clip: Clip) => this.clipUpdated.emit(clip)
-    )
+      (clip: Clip) => {
+        this.toastService.success(`${isNew ? 'Created' : 'Updated'} Clip`);
+        this.clipUpdated.emit(clip);
+      },
+      (error) => this.toastService.error(error)
+    );
   }
 }

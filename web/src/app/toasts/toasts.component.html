@@ -1,0 +1,11 @@
+<div style="position: absolute; top: 0; right: 0; z-index: 999;">
+  <div class="toast fade show" *ngFor="let toast of toasts">
+    <div class="toast-header {{cssClass(toast)}}">
+        <strong class="mr-auto">{{header(toast)}}</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    </div>
+    <div class="toast-body">
+        {{toast.message}}
+    </div>
+  </div>
+</div>

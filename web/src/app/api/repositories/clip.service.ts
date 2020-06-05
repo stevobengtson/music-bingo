@@ -35,4 +35,8 @@ export class ClipService extends BaseRequestService {
   updateClip(clip: Clip): Observable<Clip> {
     return this.http.put<Clip>(`${this.baseUrl}/${clip.id}`, { clip });
   }
+
+  delete(clip: Clip): Observable<Clip> {
+    return this.http.delete<Clip>(`${this.baseUrl}/${clip.id}`);
+  }
 }

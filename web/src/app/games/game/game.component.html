@@ -1,10 +1,12 @@
 <block-ui>
+    <app-title-bar [title]="gameName"></app-title-bar>
     <div class="row">
-        <div class="col-sm text-center">
-            <h1 class="display-4">Music Bingo: {{gameName}}</h1>
-            <button type="button" class="btn btn-outline-danger btn-lg" routerLink="/games">Back to Games</button>
-            <button type="button" *ngIf="!card" class="btn btn-success btn-lg" (click)="getGameCard()">Get Card</button>
-            <button type="button" *ngIf="card" class="btn btn-warning btn-lg" (click)="getGameCard()">Get NEW Card</button>
+        <div class="col d-flex justify-content-end">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-danger" routerLink="/games">Back to Games</button>
+                <button type="button" *ngIf="!card" class="btn btn-sm btn-success" (click)="getGameCard()">Get Card</button>
+                <button type="button" *ngIf="card" class="btn btn-sm btn-warning" (click)="getGameCard()">Get NEW Card</button>
+            </div>
         </div>
     </div>
 

@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   currentGames: Game[] = [];
 
-  constructor(private readonly gameService: GameService) { }
+  constructor(
+    private gameService: GameService
+  ) { }
 
   ngOnInit(): void {
     this.getCurrentGames();

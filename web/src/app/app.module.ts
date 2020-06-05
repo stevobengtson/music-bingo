@@ -12,15 +12,16 @@ import { BlockUIModule } from 'ng-block-ui';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AppConfigService } from './services/app-config.service';
 
 import { GamesModule } from './games/games.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ClipsModule } from './clips/clips.module';
 import { AdminModule } from './admin/admin.module';
-
-import { LocalStorageService } from './local-storage.service';
 import { ApiModule } from './api/api.module';
+
+import { AppConfigService } from './services/app-config.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { ToastsComponent } from './toasts/toasts.component';
 
 export function init_app(appConfigService: AppConfigService) {
   return () => appConfigService.load();
@@ -29,7 +30,8 @@ export function init_app(appConfigService: AppConfigService) {
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ToastsComponent
   ],
   imports: [
     BrowserModule,

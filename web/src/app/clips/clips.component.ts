@@ -5,6 +5,8 @@ import { CategoryService } from '../api/repositories/category.service';
 import { Clip } from '../api/models/game';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditClipDialogComponent } from './add-edit-clip-dialog/add-edit-clip-dialog.component';
+import { ClipService } from '@app/api/repositories/clip.service';
+import { ToastService } from '@app/services/toast.service';
 
 @Component({
   selector: 'app-clips',
@@ -20,8 +22,10 @@ export class ClipsComponent implements OnInit {
   totalClips: number = 0;
   
   constructor(
-    private readonly categoryService: CategoryService,
-    private readonly modalService: NgbModal
+    private categoryService: CategoryService,
+    private clipService: ClipService,
+    private modalService: NgbModal,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {   
@@ -43,6 +47,16 @@ export class ClipsComponent implements OnInit {
 
   addClip() {
     this.loadAddEditClipDialog(new Clip());
+  }
+
+  deleteClip(clip: Clip) {
+    this.clipService.delete(clip).subscribe(
+      (clip: Clip) => {
+        this.toastService.success(`Deleted clip: ${clip.artist} - ${clip.name}`);
+        this.getClips();
+      },
+      (error) => this.toastService.error(error)
+    );
   }
 
   private loadAddEditClipDialog(clip: Clip) {

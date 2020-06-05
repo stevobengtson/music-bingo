@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   scope :api do
     resources :categories, shallow: true do
       resources :clips
