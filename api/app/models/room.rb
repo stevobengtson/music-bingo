@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
     before_create :generate_key
+    has_and_belongs_to_many :users
 
     private
     def generate_key

@@ -13,6 +13,7 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with(:truncation)
 
 # Setup the 80s Category and Clips
+puts 'Creating 80s catetory and clips...'
 category80 = Category.new(name: '80s')
 category80.clips = Clip.create([
     { artist: 'A-ha', name: 'Take On Me', start: 60, length: 30, location: 'clips/80s/A-ha - Take On Me.mp3' },
@@ -59,6 +60,7 @@ category80.clips = Clip.create([
 category80.save
 
 # Setup the 90s Category and Clips
+puts 'Creating 90s category and clips...'
 category90 = Category.new(name: '90s')
 category90.clips = Clip.create([
     { artist: 'Britney Spears', name: '...Baby One More Time', start: 0, length: 30, location: 'clips/90s/001. Britney Spears - ...Baby One More Time.mp3' },
@@ -105,11 +107,24 @@ category90.clips = Clip.create([
 category90.save
 
 categories = Category.all
+
+puts 'Creating 100 games...'
 100.times { |n|
     Game.create(category: categories.sample, name: Faker::Team.name)
     Game.create(category: categories.sample, name: Faker::Team.name)
 }
 
+puts 'Creating 20 users...'
+20.times { |n |
+    User.create(email: Faker::Internet.email, name: Faker::Name.name, password: "test1234", password_confirmation: "test1234")
+}
+
+users = User.all
+puts 'Creating 100 rooms...'
 100.times { |n| 
-    Room.create(name: Faker::Team.name)
+    room = Room.new(name: Faker::Team.name)
+    5.times { |n |
+        room.users << users.sample
+    }
+    room.save
 }

@@ -1,0 +1,23 @@
+@baseUrl = http://192.168.86.51:3000/api/
+
+# @name login
+POST {{baseUrl}}/users/sign_in HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=teodoro@welchwelch.com&password=test1234
+
+###
+
+@authToken = {{login.response.headers.X-AuthToken}}
+
+# @name showRooms
+GET {{baseUrl}}/rooms?page=1&limit=10 HTTP/1.1
+Authorization: {{authToken}}
+
+###
+
+# @name showGames
+GET {{baseUrl}}/games?page=1&limit=10 HTTP/1.1
+Authorization: {{authToken}}
+
+###
