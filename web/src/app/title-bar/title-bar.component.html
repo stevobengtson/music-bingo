@@ -1,0 +1,33 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-faded mb-1" style="background-color: #e3f2fd;">
+  <a class="navbar-brand">Music Bingo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mr-auto">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/games']">Games</a>
+        </li>
+        <li class="nav-item" *ngIf="userLoggedIn">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin']">Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="userLoggedIn">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/rooms']">Rooms</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-nav navbar-right">
+      <form class="form-inline">
+        <button class="btn btn-sm btn-outline-success" type="button" [routerLink]="['/user/login']"
+          *ngIf="!userLoggedIn">Login</button>
+        <button class="btn btn-sm btn-outline-danger" type="button" [routerLink]="['/user/logout']"
+          *ngIf="userLoggedIn">Logout</button>
+        <button class="btn btn-sm btn-outline-info" type="button" [routerLink]="['/user/register']"
+          *ngIf="!userLoggedIn">Register</button>
+      </form>
+    </div>
+  </div>
+</nav>

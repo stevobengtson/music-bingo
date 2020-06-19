@@ -1,16 +1,35 @@
 <block-ui>
-    <app-title-bar [title]="gameName"></app-title-bar>
-    <div class="row">
-        <div class="col d-flex justify-content-end">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-danger" routerLink="/games">Back to Games</button>
-                <button type="button" *ngIf="!card" class="btn btn-sm btn-success" (click)="getGameCard()">Get Card</button>
-                <button type="button" *ngIf="card" class="btn btn-sm btn-warning" (click)="getGameCard()">Get NEW Card</button>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col d-flex justify-content-end">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-danger"
+          routerLink="/games"
+        >
+          Back to Games
+        </button>
+        <button
+          type="button"
+          *ngIf="!card"
+          class="btn btn-sm btn-success"
+          (click)="getGameCard()"
+        >
+          Get Card
+        </button>
+        <button
+          type="button"
+          *ngIf="card"
+          class="btn btn-sm btn-warning"
+          (click)="getGameCard()"
+        >
+          Get NEW Card
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div class="d-flex justify-content-center" *ngIf="card">
-        <app-card [card]="card"></app-card>
-    </div>
+  <div class="d-flex justify-content-center" *ngIf="card">
+    <app-card [card]="card"></app-card>
+  </div>
 </block-ui>

@@ -6,14 +6,15 @@ import { LogoutComponent } from './logout/logout.component';
 import { PageNotFoundComponent } from '@app/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: 'login', component:  LoginComponent },
+  { path: '', redirectTo: '/user/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}

@@ -6,7 +6,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -20,24 +20,27 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
+  }
+
+  ngOnInit(): void {
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
     // redirect to home if already logged in
     if (this.userService.currentUserValue) {
       this.router.navigate(['/']);
     }
-  }
 
-  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -48,15 +51,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.signIn(this.f.email.value, this.f.password.value)
+    this.userService
+      .signIn(this.f.email.value, this.f.password.value)
       .subscribe(
         () => {
-          alert('succesful!')
           this.router.navigate([this.returnUrl]);
         },
-        error => {
+        (error) => {
           console.error(error);
-          alert(error);
           this.loading = false;
         }
       );

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { BlockUIModule } from 'ng-block-ui';
+import { AngularTokenModule } from 'angular-token';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -18,10 +19,12 @@ import { CategoriesModule } from './categories/categories.module';
 import { ClipsModule } from './clips/clips.module';
 import { AdminModule } from './admin/admin.module';
 import { ApiModule } from './api/api.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppConfigService } from './services/app-config.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { ToastsComponent } from './toasts/toasts.component';
+import { TitleBarComponent } from './title-bar/title-bar.component';
 
 export function init_app(appConfigService: AppConfigService) {
   return () => appConfigService.load();
@@ -31,32 +34,42 @@ export function init_app(appConfigService: AppConfigService) {
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    ToastsComponent
+    ToastsComponent,
+    TitleBarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     NgBootstrapFormValidationModule.forRoot(),
     AppRoutingModule,
     BlockUIModule.forRoot(),
+    AngularTokenModule.forRoot({
+      apiBase: 'http://192.168.86.51:3000',
+    }),
     StorageServiceModule,
     GamesModule,
     CategoriesModule,
     ClipsModule,
     AdminModule,
-    ApiModule
+    ApiModule,
+    SharedModule
   ],
   providers: [
     LocalStorageService,
     AppConfigService,
-    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppConfigService], multi: true }
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init_app,
+      deps: [AppConfigService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
-  exports: [
-    BlockUIModule
-  ]
+  exports: [BlockUIModule],
 })
 export class AppModule { }
