@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
     bingobox.addEventListener('click', function(event: MouseEvent) {
       let sourceImage = document.createElement('img');
-      sourceImage.src =  "http://localhost:4200/assets/images/cursor_semi_solid.png";
+      sourceImage.src = "/assets/images/cursor_semi_solid.png";
       let isMell = false;
       // Check if it is Mell and make the daub smaller
       if(isMell) {
