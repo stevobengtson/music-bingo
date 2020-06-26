@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       let isMell = false;
       // Check if it is Mell and make the daub smaller
       if(isMell) {
-        sourceImage.src =  "http://localhost:4200/assets/images/cursor_solid.png";
+        sourceImage.src = "/assets/images/cursor_solid.png";
       }
       
       let x = event.clientX - 16;
