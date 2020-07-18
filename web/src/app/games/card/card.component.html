@@ -1,21 +1,27 @@
-<div class="row display-flex">
-    <div class="card-header text-light bg-dark border border-dark text-center align-middle">B</div>
-    <div class="card-header text-light bg-dark border border-dark text-center align-middle">I</div>
-    <div class="card-header text-light bg-dark border border-dark text-center align-middle">N</div>
-    <div class="card-header text-light bg-dark border border-dark text-center align-middle">G</div>
-    <div class="card-header text-light bg-dark border border-dark text-center align-middle">O</div>
+<div class="row equal-header">
+    <div class="offset-1 col-2 text-light bg-dark border border-dark text-center align-middle">B</div>
+    <div class="col-2 text-light bg-dark border border-dark text-center align-middle">I</div>
+    <div class="col-2 text-light bg-dark border border-dark text-center align-middle">N</div>
+    <div class="col-2 text-light bg-dark border border-dark text-center align-middle">G</div>
+    <div class="col-2 text-light bg-dark border border-dark text-center align-middle">O</div>
 </div>
 
-<div class="row display-flex" *ngFor="let cardRow of [0,1,2,3,4]">
-     <div class="card-content border text-center align-middle"
-          [ngClass]="{ 'bg-info': !card[cardCol][cardRow] || card[cardCol][cardRow].isSelected }"
-          *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
-          (click)="toggleState(cardRow, cardCol)">
-        <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
+<div id="bingobox">
+<div class="row equal" *ngFor="let cardRow of [0,1,2,3,4]">
+    <div class="col-2 text-center align-middle border"
+         *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
+         [ngClass]="{ 'offset-1': cardCol == 'b' }">
+
+         <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
             {{card[cardCol][cardRow].name}}<br>({{card[cardCol][cardRow].artist}})
         </ng-container>
         <ng-template #freeSpace>
             Free
-        </ng-template>     
+        </ng-template>
     </div>
+</div>
+</div>
+
+<div id="cursor">
+    <img alt="Dauber" src="/assets/images/dauber2.png">
 </div>

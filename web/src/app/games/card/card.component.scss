@@ -1,14 +1,30 @@
-.card-header {
-    width: 20%;
+.equal-header > .col-2 {
+    min-height: 50px;
 }
 
-.card-content {
-    width: 20%;
-    flex-grow: 1;
+.equal > .col-2 {
+    min-height: 100px;
 }
 
-.row.display-flex {
-    display: flex;
-    flex-wrap: wrap;
+.selected {
+    border: 2px solid blue;
 }
 
+#bingobox {
+    cursor: url("/assets/images/cursor_transparent.png"), auto;
+}
+
+#cursor {
+    position: absolute;
+    left: -28px;
+    top: -34px;
+    will-change: transform;
+    transform: translate(-999px, -999px);
+    pointer-events: none;
+  
+    img {
+      will-change: transform;
+      transition: transform .1s linear;
+    }
+}
+  
