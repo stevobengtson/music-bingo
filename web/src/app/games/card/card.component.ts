@@ -18,7 +18,6 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.initDauber();
   }
 
   toggleState(cardRow: number, cardCol: string) {
