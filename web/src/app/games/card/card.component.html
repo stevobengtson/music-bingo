@@ -6,13 +6,12 @@
     <div class="col-2 text-light bg-dark border border-dark text-center align-middle">O</div>
 </div>
 
-<div id="bingobox">
-<div class="row equal" *ngFor="let cardRow of [0,1,2,3,4]">
+<div id="bingobox" class="row equal" *ngFor="let cardRow of [0,1,2,3,4]">
     <div class="col-2 text-center align-middle border"
-         *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
-         [ngClass]="{ 'offset-1': cardCol == 'b' }">
+        *ngFor="let cardCol of ['b', 'i', 'n', 'g', 'o']"
+        [ngClass]="{ 'offset-1': cardCol == 'b' }">
 
-         <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
+        <ng-container *ngIf="card[cardCol][cardRow]; else freeSpace">
             {{card[cardCol][cardRow].name}}<br>({{card[cardCol][cardRow].artist}})
         </ng-container>
         <ng-template #freeSpace>
@@ -20,8 +19,7 @@
         </ng-template>
     </div>
 </div>
-</div>
 
 <div id="cursor">
-    <img alt="Dauber" src="/assets/images/dauber2.png">
+    <img alt="Dauber" src="/assets/images/dauber3.png">
 </div>
