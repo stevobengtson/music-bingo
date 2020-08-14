@@ -10,7 +10,5 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center" *ngIf="card">
-        <app-card [card]="card"></app-card>
-    </div>
+    <app-card [card]="card" *ngIf="card"></app-card>
 </block-ui>

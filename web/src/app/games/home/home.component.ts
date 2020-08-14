@@ -16,9 +16,7 @@ export class HomeComponent implements OnInit {
   page: number = 1;
   pageSize: number = 10;
   total: number = 0;
-
   currentGames: Game[] = [];
-
   constructor(
     private gameService: GameService
   ) { }
