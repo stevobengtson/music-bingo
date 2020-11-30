@@ -16,10 +16,16 @@ services:
     api:
         build: ./api
         environment:
-            RAILS_ENV: production
+            RAILS_ENV: development
+            DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: "true"
             DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-changeme}@db/music_bingo
+            DATABASE_NAME: music_bingo
+            DATABASE_USER: postgres
+            DATABASE_PASSWORD: changeme
+            DATABASE_HOST: db
         volumes:
-            - ./api:/var/www/music_bingo
+            - ./api:/usr/src/app
+            - gem_cache:/usr/local/bundle/gems
         ports:
             - "3000:3000"
         depends_on:
@@ -28,10 +34,18 @@ services:
     web:
         build: ./web
         ports:
-            - "80:80"
+          - "4200:4200"
+        environment:
+            SHELL: /bin/bash
+            NODE_ENV: development
+        volumes:
+            - node_modules:/usr/src/app/node_modules
         depends_on:
             - api
+        entrypoint: npm start -- --poll 1
    
 volumes:
     postgres:
+    gem_cache:
+    node_modules:
 

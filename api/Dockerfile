@@ -1,27 +1,40 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.2-alpine
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs vim
+ENV BUNDLER_VERSION=2.1.4
 
-# Set an environment variable where the Rails app is installed to inside of Docker image
-ENV RAILS_ROOT /var/www/music_bingo
-RUN mkdir -p $RAILS_ROOT 
+RUN apk add --update --no-cache \
+      binutils-gold \
+      build-base \
+      curl \
+      file \
+      g++ \
+      gcc \
+      git \
+      less \
+      libstdc++ \
+      libffi-dev \
+      libc-dev \
+      linux-headers \
+      libxml2-dev \
+      libxslt-dev \
+      libgcrypt-dev \
+      make \
+      netcat-openbsd \
+      openssl \
+      pkgconfig \
+      postgresql-dev \
+      tzdata
 
-# Set working directory
-WORKDIR $RAILS_ROOT
+RUN gem install bundler -v 2.1.4
 
-# Setting env up
-ENV RAILS_ENV='production'
-ENV RACK_ENV='production' 
+WORKDIR /usr/src/app
 
-# Adding gems
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-RUN bundle config set without 'development test'
-RUN bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
-RUN bundle install --jobs 20 --retry 5 
+COPY Gemfile Gemfile.lock ./
 
-# Adding project files
-COPY . .
+RUN bundle config build.nokogiri --use-system-libraries
 
-EXPOSE 3000
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+RUN bundle check || bundle install
+
+COPY . ./
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
