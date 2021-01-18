@@ -39,13 +39,23 @@ services:
             SHELL: /bin/bash
             NODE_ENV: development
         volumes:
+            - ./web:/usr/src/app
             - node_modules:/usr/src/app/node_modules
         depends_on:
             - api
         entrypoint: npm start -- --poll 1
    
+    redis:
+        image: 'redis:alpine'
+        command: redis-server
+        ports:
+            - '6379:6379'
+        volumes:
+            - 'redis:/data'
+
 volumes:
     postgres:
     gem_cache:
     node_modules:
+    redis:
 

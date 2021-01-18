@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ -f ./bin/${1}.sh ]; then
+    CMD="./bin/${1}.sh"
+    shift
+    bash ${CMD}
+else
+    echo "Unable to find command ${1}.sh"
+fi
