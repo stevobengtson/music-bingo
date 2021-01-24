@@ -12,13 +12,15 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         ports:
             - "3306:3306"
+        volumes:
+            - ./containers/mysql/sql:/docker-entrypoint-initdb.d/:ro
+            - mysql_data:/var/lib/mysql
         
     api:
         build: ./api
         environment:
-            RAILS_ENV: development
-            DATABASE_URL: mysql2://${MYSQL_USER}:${MYSQL_PASSWORD}@db/${MYSQL_DATABASE}
-            TEST_DATABSE_URL: mysql2://${MYSQL_USER}:${MYSQL_PASSWORD}@db/${MYSQL_DATABASE}_test
+            RAILS_ENV: ${RAILS_ENV}
+            DATABASE_URL: mysql2://root:${MYSQL_ROOT_PASSWORD}@db/${MYSQL_DATABASE}
             DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: "true"
         volumes:
             - ./api:/var/www/music_bingo
@@ -30,6 +32,12 @@ services:
     web:
         build: ./web
         ports:
-            - "80:80"
+            - "4200:4200"
+        volumes:
+            - ./web:/app
+            - /app/node_modules
         depends_on:
             - api
+
+volumes:
+    mysql_data:

@@ -114,7 +114,9 @@ puts 'Creating 100 games...'
     Game.create(category: categories.sample, name: Faker::Team.name)
 }
 
-puts 'Creating 20 users...'
+generalUser = User.create(email: "first.user@test.com", name: "First User", password: "test1234", password_confirmation: "test1234")
+
+puts 'Creating 20 random users...'
 20.times { |n |
     User.create(email: Faker::Internet.email, name: Faker::Name.name, password: "test1234", password_confirmation: "test1234")
 }
